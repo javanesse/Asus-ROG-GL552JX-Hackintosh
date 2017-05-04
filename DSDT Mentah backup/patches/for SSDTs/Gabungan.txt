@@ -1,0 +1,143 @@
+# Maintained by: PJALM (help@pjalm.com) for: http://pjalm.com/repos/
+
+# These patches are the registered property of PJALM.COM and can not be
+# redistributed or modified without the written consent of PJALM.COM.
+# Links to these patches are allowed. All material is protected under the DMCA.
+
+# Last Updated  : 05/07/2016
+# Patch Name    : Basic Apple Device Renames
+# Patch Version : 1.0
+
+# Device Renames
+into_all all code_regex _T_([0-6]) replaceall_matched begin T_%1 end;
+
+into device label PIC set_label begin IPIC end;
+into device label DMAD set_label begin DMAC end;
+into device label ITMR set_label begin TIMR end;
+into device label RTC0 set_label begin RTC end;
+into device label COPR set_label begin MATH end;
+into device label OMSC set_label begin LDRC end;
+into device label CHN0 set_label begin PRT0 end;
+into device label CHN1 set_label begin PRT1 end;
+into device label EUSB set_label begin EHCI end;
+into device label USBE set_label begin UHCI end;
+into device label USB0 set_label begin UHC1 end;
+into device label USB1 set_label begin UHC2 end;
+into device label USB2 set_label begin UHC3 end;
+into device label USB3 set_label begin UHC4 end;
+into device label USB4 set_label begin UHC5 end;
+into device label USB5 set_label begin UHC6 end;
+into device label USB6 set_label begin UHC7 end;
+into device label USB7 set_label begin UHC8 end;
+into device label AZAL set_label begin HDEF end;
+into device label SAT0 set_label begin SATA end;
+
+
+into_all all code_regex DMAD replaceall_matched begin DMAC end;
+into_all all code_regex ITMR replaceall_matched begin TIMR end;
+into_all all code_regex RTC0 replaceall_matched begin RTC end;
+into_all all code_regex COPR replaceall_matched begin MATH end;
+into_all all code_regex OMSC replaceall_matched begin LDRC end;
+into_all all code_regex CHN0 replaceall_matched begin PRT0 end;
+into_all all code_regex CHN1 replaceall_matched begin PRT1 end;
+into_all all code_regex EUSB replaceall_matched begin EHCI end;
+into_all all code_regex USBE replaceall_matched begin UHCI end;
+into_all all code_regex USB0 replaceall_matched begin UHC1 end;
+into_all all code_regex USB1 replaceall_matched begin UHC2 end;
+into_all all code_regex USB2 replaceall_matched begin UHC3 end;
+into_all all code_regex USB3 replaceall_matched begin UHC4 end;
+into_all all code_regex USB4 replaceall_matched begin UHC5 end;
+into_all all code_regex USB5 replaceall_matched begin UHC6 end;
+into_all all code_regex USB6 replaceall_matched begin UHC7 end;
+into_all all code_regex USB7 replaceall_matched begin UHC8 end;
+into_all all code_regex AZAL replaceall_matched begin HDEF end;
+into_all all code_regex SAT0 replaceall_matched begin SATA end;
+
+#Maintained by: RehabMan for: Laptop Patches
+#graphics_Rename-GFX0.txt
+
+# Note: Most DSDT/SSDTs use GFX0 for the integrated graphics device,
+#  but there are few renegades that use VID or AGP1.
+#  If your DSDT uses VID or AGP1 instead of GFX0, see the 
+#  alternate patch "Rename VID/AGP1 to IGPU"
+
+# sometimes there is already IGPU used for other things
+into_all all code_regex IGPU, replaceall_matched begin IGFX, end;
+
+# rename GFX0 -> IGPU for better power management
+into_all all code_regex GFX0\. replaceall_matched begin IGPU. end;
+into_all all code_regex \.GFX0 replaceall_matched begin .IGPU end;
+into_all all code_regex \sGFX0, replaceall_matched begin IGPU, end;
+into_all all code_regex \(GFX0 replaceall_matched begin (IGPU end;
+into_all all label GFX0 set_label begin IGPU end;
+into_all all label _SB.PCI0.GFX0 set_label begin _SB.PCI0.IGPU end;
+into_all all label \_SB.PCI0.GFX0 set_label begin \_SB.PCI0.IGPU end;
+into_all all label _SB.PCI0.GFX0.DD02 set_label begin _SB.PCI0.IGPU.DD02 end;
+into_all all label \_SB.PCI0.GFX0.DD02 set_label begin \_SB.PCI0.IGPU.DD02 end;
+into_all all label ^^^GFX0 set_label begin ^^^IGPU end;
+into_all all label ^^GFX0 set_label begin ^^IGPU end;
+into_all all label ^GFX0 set_label begin ^IGPU end;
+
+#Maintained by: RehabMan for: Laptop Patches
+#graphics_Rename-B0D3.txt
+
+# for DSDT
+
+into method label _WAK code_regex B0D3 replaceall_matched begin HDAU end;
+into definitionblock code_regex B0D3 replaceall_matched begin HDAU end;
+
+# for GFX0 SSDT
+
+# Note: Change your layout ID if you need something different
+
+# inject "hda-gfx"="onboard-1" into IGPU (GFX0 originally)
+into method label _DSM parent_adr 0x00020000 remove_entry;
+into device name_adr 0x00020000 insert
+begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+    Return (Package()\n
+    {\n
+        "hda-gfx", Buffer() { "onboard-1" },\n
+    })\n
+}\n
+end;
+
+# inject "hda-gfx"="onboard-1" into HDAU (B0D3 originally)
+into method label _DSM parent_adr 0x00030000 remove_entry;
+into device name_adr 0x00030000 insert
+begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
+    Return (Package()\n
+    {\n
+        "layout-id", Buffer() { 12, 0x00, 0x00, 0x00 },\n
+        "hda-gfx", Buffer() { "onboard-1" },\n
+    })\n
+}\n
+end;
+
+into device label B0D3 set_label begin HDAU end;
+into method label SBCB code_regex B0D3 replaceall_matched begin HDAU end;
+
+#Maintained by: RehabMan for: Laptop Patches
+#fix_PSS.txt
+
+# for one of the CPU SSDTs...
+
+# remove bogus:
+#
+# Package (0x06)
+# {
+#   0x80000000,
+#   0x80000000,
+#   0x80000000,
+#   0x80000000,
+#   0x80000000,
+#   0x80000000
+# }
+
+into_all all code_regex Package\s+\(0x06\)\n.*\{\n(.*0x80000000.*\n){6}.*\} removeall_matched;
+

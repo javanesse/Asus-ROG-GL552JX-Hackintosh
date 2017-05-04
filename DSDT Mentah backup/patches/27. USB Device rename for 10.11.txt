@@ -1,0 +1,17 @@
+# Maintained by: PJALM (help@pjalm.com) for: http://pjalm.com/repos/
+
+# These patches are the registered property of PJALM.COM and can not be
+# redistributed or modified without the written consent of PJALM.COM.
+# Links to these patches are allowed. All material is protected under the DMCA.
+
+# Last Updated  : 05/07/2016
+# Patch Name    : USB - Device Renames for OSX 10.11
+# Patch Version : 1.0
+
+# Rename USB devices for OSX 10.11 Support (remember to use injector with this)
+into device label EHC1 set_label begin EH01 end;
+into device label EHC2 set_label begin EH02 end;
+into device label XHC1 set_label begin XHC end;
+into_all all code_regex EHC1 replaceall_matched begin EH01 end;
+into_all all code_regex EHC2 replaceall_matched begin EH02 end;
+into_all all code_regex XHC1 replaceall_matched begin XHC end;

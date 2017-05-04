@@ -1,0 +1,5 @@
+1. Tanda volume, brightness pada layar saat menekan FN. Kemungkinan backlight
+
+3. Sleep, hibernate velum test
+4. Card reader
+5. Mic
