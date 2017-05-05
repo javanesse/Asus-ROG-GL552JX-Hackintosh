@@ -1,9 +1,22 @@
 # Asus-GL552JX-Sierra-10.12-Hackintosh
 About Asus GL552JX Running Mac OS X Sierra 10.12.4
 
-Known Problem:
-1. Card Reader
-2. Internal Mic
+# Known Problem:
+- Card Reader
+- Internal Mic
+
+# Specifications:
+- Processor:Intel Core i7-4750HQ
+- Chipset: HM86
+- Graphics: Intel Iris Pro 5200 with disabled GTX 950M
+- Wifi: Atheros 956x(AR9565)
+- Ethernet: Atheros 8131
+- Bluetooth: Qualcomm Atheros Bluetooth 4.0
+- Card Reader: Realtek_CardReader(RTL8411B_RTS5226_RTS5227)
+- Camera: ASUS UVC HD - Works OOB
+- Audio: Conexant_Audio(CX20672_CX20752)
+- Synaptics Touchpad
+
 
 # Complete Tutorial Will Available Soon. Stay Tuned
 Http://javanesse.net
