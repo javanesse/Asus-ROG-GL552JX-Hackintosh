@@ -8721,7 +8721,6 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     "device_type", Buffer() { "Audio Controller" },
                     "built-in", Buffer() { 0x00 },
                     "PinConfigurations", Buffer() { },
-                    "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
             Name(_PRW, Package() { 0x0D, 0 })
