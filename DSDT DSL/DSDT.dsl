@@ -8711,19 +8711,18 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             
+            
+            Name(_PRW, Package() { 0x0D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "AAPL,slot-name", Buffer() { "Built in" },
-                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
-                    "device_type", Buffer() { "Audio Controller" },
-                    "built-in", Buffer() { 0x00 },
+                    "layout-id", Buffer() { 28, 0x00, 0x00, 0x00 },
                     "PinConfigurations", Buffer() { },
+                    //"MaximumBootBeepVolume", 77,
                 })
             }
-            Name(_PRW, Package() { 0x0D, 0 })
         }
 
         Scope (RP01)
