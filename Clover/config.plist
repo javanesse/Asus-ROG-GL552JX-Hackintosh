@@ -205,22 +205,6 @@
 				AQAA6yU=
 				</data>
 			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Conexant menubar fix</string>
-				<key>Disabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				a3Bzaes=
-				</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
-				<key>Replace</key>
-				<data>
-				Y2ltaes=
-				</data>
-			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
