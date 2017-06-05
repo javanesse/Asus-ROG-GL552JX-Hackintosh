@@ -31,4 +31,12 @@ About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.5
 
 Http://javanesse.net
 
+# Special Thanks
+- God
+- Google
+- Tonymacx86 Crews especially Rehabman
+- InsanelyMac
+- OSX86
+- You
+
 Good Luck.
