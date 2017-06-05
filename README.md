@@ -1,5 +1,5 @@
 # Asus-GL552JX-Sierra-10.12-Hackintosh
-About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.4
+About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.5
 
 # Known Problem:
 - Card Reader
@@ -20,5 +20,14 @@ About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.4
 - Full Specs: http://icecat.us/en_in/p/asus/gl552jx-xo305d/notebook-portatili-GL552JX-XO305D-29898761.html
 
 
-# Complete Tutorial Will Available Soon. Stay Tuned
+# Video Tutorial - Complete
+- If you dont have any Mac to create USB Installer, its a little bit tricky.
+- The easy way is you can borrow a Mac to make an USB Installer.
+
+1. [Asus GL552JX Running Hackintosh - Part 1](https://www.youtube.com/watch?v=sCnqkZjMLX8)
+2. [Asus GL552JX Running Hackintosh - Part 2](https://www.youtube.com/watch?v=FAQUNGnBUTc)
+3. [Asus GL552JX Running Hackintosh - Part 3](https://www.youtube.com/watch?v=_c2QRI0pRhI)
+
 Http://javanesse.net
+
+Good Luck.
