@@ -5,6 +5,7 @@ About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.5
 - Card Reader
 - Internal Mic
 
+
 # Specifications:
 - Name : Asus GL552JX XO305D
 - Processor:Intel Core i7-4750HQ
@@ -17,7 +18,7 @@ About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.5
 - Camera: ASUS UVC HD
 - Audio: Conexant_Audio(CX20672_CX20752)
 - Synaptics Touchpad
-- Full Specs: http://icecat.us/en_in/p/asus/gl552jx-xo305d/notebook-portatili-GL552JX-XO305D-29898761.html
+- Full Specs: [Icecat - Asus GL552JX](http://icecat.us/en_in/p/asus/gl552jx-xo305d/notebook-portatili-GL552JX-XO305D-29898761.html)
 
 
 # Video Tutorial - Complete
