@@ -5840,6 +5840,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             Return (Zero)
+            Return (Zero)
         }
 
         Method (RDGP, 1, Serialized)
@@ -5857,6 +5858,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (TEMP)
             }
 
+            Return (Zero)
             Return (Zero)
         }
 
@@ -7011,20 +7013,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Device (XHC)
         {
             Name (_ADR, 0x8C318086)  // _ADR: Address
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                If (LEqual (S0ID, One))
-                {
-                    Return (Package (0x01)
-                    {
-                        PEPD
-                    })
-                }
-                Else
-                {
-                    Return (Package (0x00) {})
-                }
-            }
+            
 
             OperationRegion (XPRT, PCI_Config, Zero, 0x0100)
             Field (XPRT, AnyAcc, NoLock, Preserve)
@@ -7185,207 +7174,9 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             Name (XRST, Zero)
-            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-            {
-                If (LEqual (DVID, 0xFFFF))
-                {
-                    Return (Zero)
-                }
+            
 
-                Store (MEMB, Local2)
-                Store (PDBM, Local1)
-                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
-                Store (D0D3, Local3)
-                Store (Zero, D0D3)
-                Store (SRMB, MEMB)
-                Or (PDBM, 0x02, PDBM)
-                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
-                Field (MCA1, DWordAcc, Lock, Preserve)
-                {
-                    Offset (0x510), 
-                    PSC1,   32, 
-                    Offset (0x520), 
-                    PSC2,   32, 
-                    Offset (0x530), 
-                    PSC3,   32, 
-                    Offset (0x540), 
-                    PSC4,   32, 
-                    Offset (0x80E0), 
-                        ,   15, 
-                    AX15,   1, 
-                    Offset (0x8154), 
-                        ,   31, 
-                    CLK2,   1, 
-                    Offset (0x816C), 
-                        ,   2, 
-                    CLK0,   1, 
-                        ,   11, 
-                    CLK1,   1
-                }
-
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (Zero, MB13)
-                    Store (Zero, MB14)
-                    Store (Zero, CLK0)
-                    Store (Zero, CLK1)
-                }
-
-                Store (One, CLK2)
-                If (LEqual (PCHS, 0x02))
-                {
-                    While (LOr (LOr (LEqual (And (PSC1, 0x03F8), 0x02E0), LEqual (And (PSC2, 0x03F8), 0x02E0)), LOr (LEqual (And (PSC3, 0x03F8), 0x02E0), LEqual (And (PSC4, 0x03F8), 0x02E0))))
-                    {
-                        Stall (0x0A)
-                    }
-
-                    Store (Zero, Local4)
-                    And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC1)
-                        Or (Local4, One, Local4)
-                    }
-
-                    And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC2)
-                        Or (Local4, 0x02, Local4)
-                    }
-
-                    And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC3)
-                        Or (Local4, 0x04, Local4)
-                    }
-
-                    And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC4)
-                        Or (Local4, 0x08, Local4)
-                    }
-
-                    If (Local4)
-                    {
-                        If (LLess (MSOS (), OSW8))
-                        {
-                            Stall (0x65)
-                        }
-                        Else
-                        {
-                            Sleep (0x65)
-                        }
-
-                        If (And (Local4, One))
-                        {
-                            And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC1)
-                        }
-
-                        If (And (Local4, 0x02))
-                        {
-                            And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC2)
-                        }
-
-                        If (And (Local4, 0x04))
-                        {
-                            And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC3)
-                        }
-
-                        If (And (Local4, 0x08))
-                        {
-                            And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC4)
-                        }
-                    }
-
-                    Store (One, AX15)
-                }
-
-                Store (Zero, SWAI)
-                Store (Zero, SAIP)
-                If (CondRefOf (\_SB.PCI0.XHC.PS0X))
-                {
-                    PS0X ()
-                }
-
-                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
-                Store (Local2, MEMB)
-                Store (Local1, PDBM)
-            }
-
-            Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-            {
-                If (LEqual (DVID, 0xFFFF))
-                {
-                    Return (Zero)
-                }
-
-                Store (One, PMES)
-                Store (One, PMEE)
-                Store (MEMB, Local2)
-                Store (PDBM, Local1)
-                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
-                Store (SRMB, MEMB)
-                Or (PDBM, 0x02, PDBM)
-                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
-                Field (MCA1, DWordAcc, Lock, Preserve)
-                {
-                    Offset (0x80E0), 
-                        ,   15, 
-                    AX15,   1, 
-                    Offset (0x8154), 
-                        ,   31, 
-                    CLK2,   1, 
-                    Offset (0x816C), 
-                        ,   2, 
-                    CLK0,   1, 
-                        ,   11, 
-                    CLK1,   1, 
-                    Offset (0x8170)
-                }
-
-                Store (D0D3, Local3)
-                If (LEqual (Local3, 0x03))
-                {
-                    Store (Zero, D0D3)
-                }
-
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (One, MB13)
-                    Store (One, MB14)
-                    Store (One, CLK0)
-                    Store (One, CLK1)
-                }
-
-                Store (Zero, CLK2)
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (Zero, AX15)
-                }
-
-                Store (One, SWAI)
-                Store (One, SAIP)
-                If (CondRefOf (\_SB.PCI0.XHC.PS3X))
-                {
-                    PS3X ()
-                }
-
-                If (LEqual (Local3, 0x03))
-                {
-                    Store (0x03, D0D3)
-                }
-
-                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
-                Store (Local2, MEMB)
-                Store (Local1, PDBM)
-            }
+            
 
             Method (CUID, 1, Serialized)
             {
@@ -8790,7 +8581,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
 
                 ADBG ("SATA DEP NULL")
-                Return (Package (0x00) {})
+                Return (Package (Zero) {})
             }
 
             Device (PRT0)
@@ -8886,12 +8677,20 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (PIB2)
                 }
             }
+            Method (_DSM, 4, NotSerialized)
+            {
+                Store (Package (0x08) {
+                    "AAPL,slot-name", "Built In",
+                    "name", "Intel AHCI Controller",
+                    "model", Buffer (0x2D) {"Intel 8 Series Chipset Family SATA Controller"},
+                    "device_type", Buffer (0x0F) {"AHCI Controller"},
+                }, Local0)
+                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                Return (Local0)
+            }
         }
 
-        Device (SAT1)
-        {
-            Name (_ADR, 0x001F0005)  // _ADR: Address
-        }
+        
 
         Device (SBUS)
         {
@@ -9601,7 +9400,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU0 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9622,7 +9421,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU1 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9643,7 +9442,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU2 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9664,7 +9463,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU3 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9685,7 +9484,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU4 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9706,7 +9505,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU5 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9727,7 +9526,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU6 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9748,7 +9547,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Else
                 {
                     ADBG ("CPU7 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
         }
@@ -9854,7 +9653,13 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Method (ADBG, 1, Serialized)
     {
         
-        Return(0)
+        
+        If (CondRefOf (MDBG))
+        {
+            Return (MDBG)
+        }
+        Return (Zero)
+
 
     }
 
@@ -10144,6 +9949,7 @@ Return (Package (0x02)
         Store (Local1, PPL1)
         Store (One, PL1E)
         Store (One, CLP1)
+        Return (Zero)
     }
 
     Method (RPL1, 0, Serialized)

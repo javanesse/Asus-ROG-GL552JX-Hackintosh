@@ -1,0 +1,51 @@
+# Maintained by: PJALM (help@pjalm.com) for: http://pjalm.com/repos/
+
+# These patches are the registered property of PJALM.COM and can not be
+# redistributed or modified without the written consent of PJALM.COM.
+# Links to these patches are allowed. All material is protected under the DMCA.
+
+# Last Updated  : 05/07/2016
+# Patch Name    : Generic Fixes
+# Patch Version : 1.0
+# Filtered by javanesse
+
+
+
+into_all all code_regex (Return\s\(Package\s\()0x00(\)\s\{\}\)) replace_matched begin %1Zero%2 end;
+into_all all code_regex (Name\s\(XMPT,\sBuffer\s\()0x0000(\)\s\{\}\)) replace_matched begin %1Zero%2 end;
+
+into method label RDGI parent_label _SB insert begin Return (Zero) end;
+into method label RDGP parent_label _SB insert begin Return (Zero) end;
+into method label SPL1 insert begin Return (Zero) end;
+
+into method label _DEP parent_label XHC remove_entry;
+into method label _PS0 parent_label XHC remove_entry;
+into method label _PS3 parent_label XHC remove_entry;
+
+into method label ADBG parent_label PRT1 code_regex (Return\s\(Package\s\()0x00(\)\s\{\}\)) remove_matched;
+into method label ADBG replace_content begin
+If (CondRefOf (MDBG))\n
+{\n
+    Return (MDBG)\n
+}\n
+Return (Zero)\n
+end;
+
+into device label SAT0 set_label begin SATA end;
+into_all all code_regex SAT0 replaceall_matched begin SATA end;
+into device label SAT1 remove_entry;
+into method label _DSM parent_label SATA remove_entry;
+into device label SATA insert begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+	Store (Package (0x08) {\n
+		"AAPL,slot-name", "Built In",\n
+		"name", "Intel AHCI Controller",\n
+		"model", Buffer (0x2D) {"Intel 8 Series Chipset Family SATA Controller"},\n
+		"device_type", Buffer (0x0F) {"AHCI Controller"},\n
+	}, Local0)\n
+	DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
+	Return (Local0)\n
+}
+end;
+

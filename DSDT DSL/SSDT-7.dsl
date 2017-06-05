@@ -941,7 +941,7 @@ DefinitionBlock ("", "SSDT", 1, "SaSsdt", "SaSsdt ", 0x00003000)
                 Else
                 {
                     ADBG ("GFX0 DEP NULL")
-                    Return (Package (0x00) {})
+                    Return (Package (Zero) {})
                 }
             }
 
