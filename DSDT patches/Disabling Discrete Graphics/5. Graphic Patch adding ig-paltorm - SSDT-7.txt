@@ -3,6 +3,7 @@
 
 #
 # Use this patch if your laptop has Haswell graphics
+# Refined by javanesse optimized for Asus GL552JX
 #
 
 into method label _DSM parent_adr 0x00020000 remove_entry;
@@ -13,7 +14,7 @@ Method (_DSM, 4, NotSerialized)\n
     If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }\n
     Return (Package()\n
     {\n
-        "AAPL,ig-platform-id", Buffer() { 0x06, 0x00, 0x26, 0x0a },\n
+        "AAPL,ig-platform-id", Buffer() { 0x00, 0x00, 0x26, 0x0D },\n
         "hda-gfx", Buffer() { "onboard-1" },\n
     })\n
 }\n
