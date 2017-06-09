@@ -5840,7 +5840,6 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             Return (Zero)
-            Return (Zero)
         }
 
         Method (RDGP, 1, Serialized)
@@ -5858,7 +5857,6 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (TEMP)
             }
 
-            Return (Zero)
             Return (Zero)
         }
 
@@ -8688,6 +8686,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
                 Return (Local0)
             }
+            
         }
 
         

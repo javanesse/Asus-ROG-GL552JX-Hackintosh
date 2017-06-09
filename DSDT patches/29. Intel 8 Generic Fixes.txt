@@ -7,15 +7,13 @@
 # Last Updated  : 05/07/2016
 # Patch Name    : Generic Fixes
 # Patch Version : 1.0
-# Filtered by javanesse
+# Filtered for Asus GL552JX by javanesse
 
 
 
 into_all all code_regex (Return\s\(Package\s\()0x00(\)\s\{\}\)) replace_matched begin %1Zero%2 end;
 into_all all code_regex (Name\s\(XMPT,\sBuffer\s\()0x0000(\)\s\{\}\)) replace_matched begin %1Zero%2 end;
 
-into method label RDGI parent_label _SB insert begin Return (Zero) end;
-into method label RDGP parent_label _SB insert begin Return (Zero) end;
 into method label SPL1 insert begin Return (Zero) end;
 
 into method label _DEP parent_label XHC remove_entry;
