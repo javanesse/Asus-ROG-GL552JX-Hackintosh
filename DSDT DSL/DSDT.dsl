@@ -7010,7 +7010,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Device (XHC)
         {
-            Name (_ADR, 0x8C318086)  // _ADR: Address
+            Name (_ADR, 0x00140000)  // _ADR: Address
             
 
             OperationRegion (XPRT, PCI_Config, Zero, 0x0100)

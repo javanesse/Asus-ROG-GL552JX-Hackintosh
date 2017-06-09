@@ -82,9 +82,7 @@
 		<key>USB</key>
 		<dict>
 			<key>FixOwnership</key>
-			<false/>
-			<key>Inject</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>GUI</key>
@@ -175,18 +173,18 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>change 15 port limit to 30</string>
+				<string>change 15 port limit to 20 in XHCI kext (9-series) 10.12</string>
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
 				<data>
-				g72M/v//EA==
+				g710////EA==
 				</data>
 				<key>Name</key>
 				<string>AppleUSBXHCIPCI</string>
 				<key>Replace</key>
 				<data>
-				g72M/v//Hw==
+				g710////Fg==
 				</data>
 			</dict>
 			<dict>
