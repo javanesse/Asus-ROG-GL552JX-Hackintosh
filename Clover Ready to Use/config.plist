@@ -205,6 +205,40 @@
 				AQAA6yU=
 				</data>
 			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Conexant menubar fix (credit wern apfel)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				a3Bzaes=
+				</data>
+				<key>MatchOS</key>
+				<string>10.11.6,10.12.x</string>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				Y2ltaes=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Remove this line if you are not using aDummyHDA.kext - Patching 11d4198b with 14f1510F codec (patched by AppleHDA Patcher.app)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				ixnUEQ==
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				D1HxFA==
+				</data>
+			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
