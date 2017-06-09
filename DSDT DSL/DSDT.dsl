@@ -10093,7 +10093,7 @@ Return (Package (0x02)
                     Store (0x07D3, OSYS)
                 }
 
-                If(LOr(_OSI("Darwin"),_OSI("Windows 2006")))
+                If (_OSI ("Windows 2006"))
                 {
                     Store (0x07D6, OSYS)
                 }
