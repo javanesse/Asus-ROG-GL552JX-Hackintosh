@@ -33,6 +33,7 @@ Http://javanesse.net
 
 # Special Thanks
 - God
+- my lovely devil Y I the absolute evil
 - Google
 - Tonymacx86 Crews especially Rehabman
 - InsanelyMac
