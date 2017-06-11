@@ -6585,18 +6585,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name(_PRW, Package() { 0x0D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
-                {
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
+                Store (Package (0x15) {
+                    "AAPL,slot-name", "Built In",
+                    "name", "Intel EHCI Controller",
+                    "model", Buffer(0x3E) {"Intel 8 Series Chipset Family USB Enhanced Host Controller #1"},
+                    "device_type", Buffer (0x0E) {"USB Controller"},
+                    "AAPL,current-available", 0x0834,
+                    "AAPL,current-extra", 0x0A8C,
+                    "AAPL,current-in-sleep", 0x03E8,
+                    "AAPL,current-extra-in-sleep", 0x0834,
+                    "AAPL,max-port-current-in-sleep", 0x0A8C,
                     "AAPL,device-internal", 0x02,
-                    "AAPL,max-port-current-in-sleep", 2100,
-                })
+                    Buffer (One) {0x00}
+                }, Local0)
+                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                Return (Local0)
             }
+            
         }
 
         Device (EH02)
@@ -6994,18 +6999,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name(_PRW, Package() { 0x0D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
-                {
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
+                Store (Package (0x15) {
+                    "AAPL,slot-name", "Built In",
+                    "name", "Intel EHCI Controller",
+                    "model", Buffer (0x3E) {"Intel 8 Series Chipset Family USB Enhanced Host Controller #2"},
+                    "device_type", Buffer (0x0E) {"USB Controller"},
+                    "AAPL,current-available", 0x0834,
+                    "AAPL,current-extra", 0x0A8C,
+                    "AAPL,current-in-sleep", 0x03E8,
+                    "AAPL,current-extra-in-sleep", 0x0834,
+                    "AAPL,max-port-current-in-sleep", 0x0A8C,
                     "AAPL,device-internal", 0x02,
-                    "AAPL,max-port-current-in-sleep", 2100,
-                })
+                    Buffer (One) {0x00}
+                }, Local0)
+                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                Return (Local0)
             }
+            
         }
 
         Device (XHC)
@@ -8467,18 +8477,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name(_PRW, Package() { 0x0D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
-                {
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
+                Store (Package (0x15) {
+                    "AAPL,slot-name", "Built In",
+                    "name", "Intel XHCI Controller",
+                    "model", Buffer (0x37) {"Intel 8 Series Chipset Family USB xHCI Host Controller"},
+                    "device_type", Buffer (0x0E) {"USB Controller"},
+                    "AAPL,current-available", 0x0834,
+                    "AAPL,current-extra", 0x0A8C,
+                    "AAPL,current-in-sleep", 0x03E8,
+                    "AAPL,current-extra-in-sleep", 0x0834,
+                    "AAPL,max-port-current-in-sleep", 0x0A8C,
                     "AAPL,device-internal", 0x02,
-                    "AAPL,max-port-current-in-sleep", 2100,
-                })
+                    Buffer (One) {0x00}
+                }, Local0)
+                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                Return (Local0)
             }
+            
         }
 
         Device (HDEF)
@@ -9036,11 +9051,14 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_CID, "diagsvault")
                     Method (_DSM, 4, NotSerialized)
                     {
-                        If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                        Return (Package() { "address", 0x57 })
+                        Store (Package (0x02) {
+                            "address", 0x57			}, Local0)
+                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                        Return (Local0)
                     }
                 }
             }
+            
         }
     }
 
