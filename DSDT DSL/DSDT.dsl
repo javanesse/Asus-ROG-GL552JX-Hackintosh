@@ -8522,7 +8522,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
+                    "layout-id", Buffer() { 0x1C, 0x00, 0x00, 0x00 },
                     "PinConfigurations", Buffer() { },
                     //"MaximumBootBeepVolume", 77,
                 })
