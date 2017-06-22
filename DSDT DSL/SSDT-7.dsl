@@ -929,10 +929,10 @@ DefinitionBlock ("", "SSDT", 1, "SaSsdt", "SaSsdt ", 0x00003000)
 
             Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
             {
-                ADBG ("GFX0 DEP Call")
+                ADBG ("IGPU DEP Call")
                 If (LEqual (S0ID, One))
                 {
-                    ADBG ("GFX0 DEP")
+                    ADBG ("IGPU DEP")
                     Return (Package (0x01)
                     {
                         \_SB.PEPD
@@ -940,7 +940,7 @@ DefinitionBlock ("", "SSDT", 1, "SaSsdt", "SaSsdt ", 0x00003000)
                 }
                 Else
                 {
-                    ADBG ("GFX0 DEP NULL")
+                    ADBG ("IGPU DEP NULL")
                     Return (Package (Zero) {})
                 }
             }
