@@ -17,6 +17,7 @@ Codec: Connexant CX20752
 
 
 You must change the Layout to 13  in the DSDT patch HDEF.
+The DSDT and SSDT provided above, using layout0id:13 already, so you dont need to reconfiguring anymore.
 
 Kext Patched by Insanelydeepak 
 
