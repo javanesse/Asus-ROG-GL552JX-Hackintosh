@@ -13,13 +13,13 @@
 				<false/>
 				<key>Find</key>
 				<data>
-				BgAmCgEDAwMAAAACAAAwAQAAYAA=
+				BgAmCgEDAwMAAAACAAAwAQAABgA=
 				</data>
 				<key>Name</key>
 				<string>AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>
-				BgAmCgEDAgIAAAACAAAwAQAAkAA=
+				BgAmCgEDAgIAAAACAAAwAQAACQA=
 				</data>
 			</dict>
 			<dict>
@@ -29,13 +29,13 @@
 				<false/>
 				<key>Find</key>
 				<data>
-				AQUJAAAEAACHAAAAAgQJAAAEAACHAAAA
+				AQUJAAAEAACHAAAAAgQJAAAAQAAIcAAA
 				</data>
 				<key>Name</key>
 				<string>AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>
-				AgQJAAAIAACHAAAA/wAAAAEAAABAAAAA
+				AgQJAAAIAACHAAAA/wAAAAAQAAAEAAAA
 				</data>
 			</dict>
 		</array>
