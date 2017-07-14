@@ -16,7 +16,7 @@
 				BgAmCgEDAwMAAAACAAAwAQAABgA=
 				</data>
 				<key>Name</key>
-				<string>AppleIntelFramebufferAzul</string>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>
 				BgAmCgEDAgIAAAACAAAwAQAACQA=
@@ -32,7 +32,7 @@
 				AQUJAAAEAACHAAAAAgQJAAAAQAAIcAAA
 				</data>
 				<key>Name</key>
-				<string>AppleIntelFramebufferAzul</string>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
 				<key>Replace</key>
 				<data>
 				AgQJAAAIAACHAAAA/wAAAAAQAAAEAAAA
