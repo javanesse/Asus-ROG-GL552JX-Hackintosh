@@ -1,5 +1,6 @@
 # Alternative Graphic Framebuffer for Intel HD 5200
-##What is this:
+
+## What is this:
 - its just an alternative framebuffer for Intel HD 5200 Graphic card using 0x0a260006 ig-platform-id
 
 ## What the different with the other one:
