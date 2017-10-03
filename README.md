@@ -33,11 +33,13 @@ Http://javanesse.net
 
 # Special Thanks
 - God
+- parents
 - my lovely devil Y I the absolute evil
 - Google
 - Tonymacx86 Crews especially Rehabman
 - InsanelyMac
 - OSX86
+- kexts developers
 - You
 
 Good Luck.
