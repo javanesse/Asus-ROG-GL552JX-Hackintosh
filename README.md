@@ -2,7 +2,6 @@
 About Asus GL552JX XO305D Running Mac OS X Sierra 10.12.5
 
 # Known Problem:
-- Card Reader
 - Internal Mic
 
 
