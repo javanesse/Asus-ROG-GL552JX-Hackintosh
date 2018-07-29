@@ -10,7 +10,9 @@ Tujuan dari panduan ini adalah untuk membantu patching dengan cara yang tepat fi
 Dari sini Kita akan memulai melakukan patching ACPI.
 File ACPI adalah yang nantinya akan berupa file DSDT dan SSDT.
 
-Metode ini berlaku untuk semua model komputer atau laptop sehingga kalian dapat menggunakan metode ini untuk komputer atau laptop kalian
+Metode ini berlaku untuk semua model komputer atau laptop sehingga kalian dapat menggunakan metode ini untuk komputer atau laptop kalian.
+
+Urutan dari metode pelaksanaanya Saya tandai menggunakan nomor urut paling depan.
 
 Regard,
 
