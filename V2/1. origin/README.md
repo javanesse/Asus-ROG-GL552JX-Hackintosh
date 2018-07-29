@@ -21,8 +21,8 @@ Tidak ada tanda apapun di layar ketika kita sedang meng-ekstrak, hanya mungkin k
 
 ---
 
-Setelah melakukan metode ini pada Asus ROG GL552JX, maka terbuatlah file-file ini.
+Setelah melakukan ekstrak ACPI menggunakan metode ini pada Asus ROG GL552JX, maka terbuatlah file-file ini.
 
 Regard,
 
-Http://Javanesse.Net
+Http://javanesse.net
