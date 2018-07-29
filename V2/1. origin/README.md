@@ -17,7 +17,7 @@ Pada layar utama menu Clover bootloader, Kalian dapat menekan tombol F4 dan Clov
 
 Catatan, beberapa implementasi BIOS mengharuskan menekan tombol fn+F4 untuk membuat DSDT, jadi alangkah lebih baik kalau kalian menekan tombol F4 kemudian fn+F4 untuk memastikan ACPI terekstrak dengan baik.
 
-Tidak ada tanda apapun ketika kita sedang meng-ekstrak, hanya mungkin komputer akan hang beberapa detik. Hang akan jadi leboh lama ketika kita meng-ekstrak ACPI ke USB, sebagai contoh ketika Kalian sedang booting dari USB untuk meng-ekstrak ACPI.
+Tidak ada tanda apapun di layar ketika kita sedang meng-ekstrak, hanya mungkin komputer akan hang beberapa detik. Hang akan jadi leboh lama ketika kita meng-ekstrak ACPI ke USB, sebagai contoh ketika Kalian sedang booting dari USB untuk meng-ekstrak ACPI.
 
 ---
 
