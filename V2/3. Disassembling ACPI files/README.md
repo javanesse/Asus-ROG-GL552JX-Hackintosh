@@ -82,6 +82,11 @@ External(_GPE.VHOV, MethodObj, 3)
 External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)'
 
 
+
+I think you should use an
+`<addr>` element here instead.
+
+
 Regard,
 
 Http://javanesse.net
