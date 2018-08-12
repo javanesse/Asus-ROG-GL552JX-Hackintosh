@@ -70,16 +70,16 @@ caranya dalah membuat file refs.txt pada folder dimana kita menyimpan DSDT dan S
 
 kemudian buka file refs.txt tersebut dan paste kode di bawah ini:
 
-`External(MDBG, MethodObj, 1)
-External(_GPE.MMTB, MethodObj, 0)
-External(_SB.PCI0.LPCB.H_EC.ECWT, MethodObj, 2)
-External(_SB.PCI0.LPCB.H_EC.ECRD, MethodObj, 1)
-External(_SB.PCI0.LPCB.H_EC.ECMD, MethodObj, 1)
-External(_SB.PCI0.PEG0.PEGP.SGPO, MethodObj, 2)
-External(_SB.PCI0.GFX0.DD02._BCM, MethodObj, 1)
-External(_SB.PCI0.SAT0.SDSM, MethodObj, 4)
-External(_GPE.VHOV, MethodObj, 3)
-External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)`
+> External(MDBG, MethodObj, 1)<br/>
+> External(_GPE.MMTB, MethodObj, 0)<br/>
+> External(_SB.PCI0.LPCB.H_EC.ECWT, MethodObj, 2)<br/>
+> External(_SB.PCI0.LPCB.H_EC.ECRD, MethodObj, 1)<br/>
+> External(_SB.PCI0.LPCB.H_EC.ECMD, MethodObj, 1)<br/>
+> External(_SB.PCI0.PEG0.PEGP.SGPO, MethodObj, 2)<br/>
+> External(_SB.PCI0.GFX0.DD02._BCM, MethodObj, 1)<br/>
+> External(_SB.PCI0.SAT0.SDSM, MethodObj, 4)<br/>
+> External(_GPE.VHOV, MethodObj, 3)<br/>
+> External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)<br/>
 
 
 
