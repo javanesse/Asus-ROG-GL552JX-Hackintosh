@@ -23,7 +23,7 @@ The following refs.txt content has some common (and not so common) missing symbo
 First create refs.txt in the directory where your DSDT/SSDT files are:
 Code (Text):
 
-External(MDBG, MethodObj, 1)
+`External(MDBG, MethodObj, 1)
 External(_GPE.MMTB, MethodObj, 0)
 External(_SB.PCI0.LPCB.H_EC.ECWT, MethodObj, 2)
 External(_SB.PCI0.LPCB.H_EC.ECRD, MethodObj, 1)
@@ -32,7 +32,7 @@ External(_SB.PCI0.PEG0.PEGP.SGPO, MethodObj, 2)
 External(_SB.PCI0.GFX0.DD02._BCM, MethodObj, 1)
 External(_SB.PCI0.SAT0.SDSM, MethodObj, 4)
 External(_GPE.VHOV, MethodObj, 3)
-External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)
+External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)`
  
 Note: A handy way to create refs.txt is to use pbpaste in Terminal. Copy the text above to the clipboard (I'm assuming you know how to do that), then:
 Code (Text):
@@ -70,7 +70,7 @@ caranya dalah membuat file refs.txt pada folder dimana kita menyimpan DSDT dan S
 
 kemudian buka file refs.txt tersebut dan paste kode di bawah ini:
 
-'External(MDBG, MethodObj, 1)
+`External(MDBG, MethodObj, 1)
 External(_GPE.MMTB, MethodObj, 0)
 External(_SB.PCI0.LPCB.H_EC.ECWT, MethodObj, 2)
 External(_SB.PCI0.LPCB.H_EC.ECRD, MethodObj, 1)
@@ -79,12 +79,8 @@ External(_SB.PCI0.PEG0.PEGP.SGPO, MethodObj, 2)
 External(_SB.PCI0.GFX0.DD02._BCM, MethodObj, 1)
 External(_SB.PCI0.SAT0.SDSM, MethodObj, 4)
 External(_GPE.VHOV, MethodObj, 3)
-External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)'
+External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)`
 
-
-
-I think you should use an
-`<addr>` element here instead.
 
 
 Regard,
