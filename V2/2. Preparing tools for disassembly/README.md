@@ -1,3 +1,5 @@
+Preparing tools for disassembly
+
 Reff: https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/
 
 Preparing tools for disassembly
