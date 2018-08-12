@@ -42,9 +42,7 @@ pbpaste>refs.txt
 That will create refs.txt in your current working directory.
 
 Then use it during disassembly:
-Code (Text):
-
-iasl -da -dl -fe refs.txt DSDT.aml SSDT*.aml
+`iasl -da -dl -fe refs.txt DSDT.aml SSDT*.aml`
 
 ---
 
@@ -80,6 +78,13 @@ kemudian buka file refs.txt tersebut dan paste kode di bawah ini:
 > External(_SB.PCI0.SAT0.SDSM, MethodObj, 4)<br/>
 > External(_GPE.VHOV, MethodObj, 3)<br/>
 > External(_SB.PCI0.XHC.RHUB.TPLD, MethodObj, 2)<br/>
+
+setelah file refs.txt terbuat, kemudian buka terminal dan eksekusi command di bawah ini:
+`iasl -da -dl -fe refs.txt DSDT.aml SSDT*.aml`
+
+dengan command di atas, maka akan terbentuklah file ber-ekstensi *.dsl
+
+file-file inilah yang akan kita patch nantinya.
 
 
 
