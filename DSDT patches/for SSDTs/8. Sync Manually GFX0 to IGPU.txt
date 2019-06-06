@@ -1,2 +1,0 @@
-search and rename GFX0 to IGPU manually
-found 3 items

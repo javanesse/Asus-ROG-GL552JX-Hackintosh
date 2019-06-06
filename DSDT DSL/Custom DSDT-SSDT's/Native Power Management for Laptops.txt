@@ -1,7 +1,0 @@
-Create custom SSDT using ssdtPRGen
-
-https://www.tonymacx86.com/threads/guide-native-power-management-for-laptops.175801/
-
-
-Testing PM:
-you should run IORegistryExplorer and verify that X86PlatformPlugin is loading under the CPU0 node

@@ -1,8 +1,0 @@
-#Maintained by: RehabMan for: Laptop Patches
-#graphics_SSDT-disable-cleanup.txt
-
-# These patches can be used to clean common errors in SSDTs
-# commonly used by laptops with switched dual-GPU setups.
-
-into device label WMI1 remove_entry;
-into_all all code_regex .*WMI1.* removeall_matched;
