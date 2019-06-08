@@ -1,0 +1,63 @@
+1. Run Apps from Anywhere is now missing from SysPrefs -> Security & Privacy -> General:
+sudo spctl --master-disable
+
+———————————————
+
+2. Haswell pauses/unresponsiveness shortly after boot:
+https://www.tonymacx86.com/threads/readme-common-some-unsolved-problems-in-10-12-sierra.202316/page-94#post-1485104
+
+#Put on Clover Kexts to Patch
+
+Name: com.apple.driver.AppleIntelFramebufferAzul
+Comment: 0x0a260006 9MB cursor bytes (vbo), 2 ports only (RehabMan)
+Find: <0600260a 01030303 00000002 00003001 00006000>
+Replace: <0600260a 01030202 00000002 00003001 00009000>
+
+Name: com.apple.driver.AppleIntelFramebufferAzul
+Comment: 0x0a260006 disable 0204 port, change 0105 DP port to 0204 HDMI (RehabMan)
+Find: <01050900 00040000 87000000 02040900 00040000 87000000>
+Replace: <02040900 00080000 87000000 FF000000 01000000 40000000>
+
+———————————————
+
+3. Fix Boot graphics glitch, 10.12 :
+
+#Put on Clover Kexts to Patch
+
+Name: com.apple.iokit.IOGraphicsFamily
+Comment: Boot graphics glitch, 10.12
+Find: <01000075 25>
+Replace: <010000eb 25>
+
+———————————————
+
+4. Rebuild kernel cache
+u must boot without cache using -f -F bootarg
+
+sudo touch /System/Library/Extensions && sudo kextcache -u /
+
+———————————————
+5. reset NVRAM
+To clear the values:
+sudo nvram -c
+
+To display the values:
+sudo nvram -p
+
+To display the values, including the SmUUID and other IDs stored there:
+sudo nvram -x -p
+———————————————
+
+6. Disabling Hibernate Mode
+
+be aware that hibernation (suspend to disk or S4 sleep) is not supported on hackintosh.
+
+You should disable it:
+sudo pmset -a hibernatemode 0
+sudo rm /var/vm/sleepimage
+sudo mkdir /var/vm/sleepimage
+
+Always check your hibernatemode after updates and disable it. System updates tend to re-enable it, although the trick above (making sleepimage a directory) tends to help.
+———————————————
+
+

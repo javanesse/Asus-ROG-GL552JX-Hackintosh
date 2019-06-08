@@ -1,0 +1,13 @@
+into method label _PTS code_regex ([\s\S]*) replace_matched
+begin
+External(\\_SB.PCI0.PEG0.PEGP._ON, MethodObj)\n
+If (CondRefOf(\\_SB.PCI0.PEG0.PEGP._ON)) { \\_SB.PCI0.PEG0.PEGP._ON() }\n
+%1
+end;
+
+into method label _WAK code_regex (Return\s+\(.*) replace_matched
+begin
+External(\\_SB.PCI0.PEG0.PEGP._OFF, MethodObj)\n
+If (CondRefOf(\\_SB.PCI0.PEG0.PEGP._OFF)) { \\_SB.PCI0.PEG0.PEGP._OFF() }\n
+%1
+end;
