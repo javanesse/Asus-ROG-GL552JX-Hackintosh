@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-6.aml, Mon Jun 24 20:36:20 2019
+ * Disassembly of SSDT-6-CppcTabl.aml, Tue Jun 25 12:50:23 2019
  *
  * Original Table Header:
  *     Signature        "SSDT"
  *     Length           0x00000393 (915)
  *     Revision         0x01
- *     Checksum         0x6E
+ *     Checksum         0x6A
  *     OEM ID           "CppcTa"
  *     OEM Table ID     "CppcTabl"
  *     OEM Revision     0x00001000 (4096)
@@ -54,7 +54,7 @@ DefinitionBlock ("", "SSDT", 1, "CppcTa", "CppcTabl", 0x00001000)
     {
         Device (PCCD)
         {
-            Name (PCCA, 0xC6B07018)
+            Name (PCCA, 0xCAB07018)
             Name (PCCS, 0x00001000)
             Name (PENB, 0x00000001)
             Name (_HID, EisaId ("INT340F"))  // _HID: Hardware ID

@@ -28,6 +28,8 @@
  * 22. Special Patch - SSDT-4 Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
  * 23. Special Patch - SSDT-4 PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
  */
+
+
 /*
  * Intel ACPI Component Architecture
  * AML/ASL+ Disassembler version 20180427 (64-bit version)(RM)
@@ -35,13 +37,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of DSDT.aml, Mon Jun 24 20:36:20 2019
+ * Disassembly of DSDT.aml, Tue Jun 25 12:50:23 2019
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00013E21 (81441)
  *     Revision         0x02
- *     Checksum         0x23
+ *     Checksum         0x1F
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
  *     OEM Revision     0x00000012 (18)
@@ -234,7 +236,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Name (TOPM, 0x00000000)
     Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
-    OperationRegion (GNVS, SystemMemory, 0xC6B09C18, 0x02B2)
+    OperationRegion (GNVS, SystemMemory, 0xCAB09C18, 0x02B2)
     Field (GNVS, AnyAcc, Lock, Preserve)
     {
         OSYS,   16, 
