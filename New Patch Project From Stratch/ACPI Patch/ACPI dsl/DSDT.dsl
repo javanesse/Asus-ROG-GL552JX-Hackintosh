@@ -23,10 +23,11 @@
  * 18. Rename TMR to TIMR - DSDT - Error, fix, replace name manually
  * 19. Rename GFX0 to IGPU - Across ACPI's - terminal Double Check
  * 20. Add SSDT-PluginType1
- * 21. Fix battery_ASUS-G75vw
+ * 21. Fix battery_ASUS-G75vw - DSDT - Butuh kext ACPIBatteryManager.kext
  * 
- * 22. Special Patch - SSDT-4 Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
- * 23. Special Patch - SSDT-4 PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
+ * 22. Special Patch - DSDT Audio Patch HDEF menggunakan layoutid yang di hasilkan oleh aolikasi AppleHDA patcher. Butuh kext AppleALC
+ * 23. Special Patch - SSDT-4 Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
+ * 24. Special Patch - SSDT-4 PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
  */
 
 
@@ -8627,6 +8628,19 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
             {
                 Return (GPRW (0x0D, 0x04))
+            }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,slot-name", Buffer() { "Built in" },
+                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
+                    "device_type", Buffer() { "Audio Controller" },
+                    "built-in", Buffer() { 0x00 },
+                    "PinConfigurations", Buffer() { },
+                    "hda-gfx", Buffer() { "onboard-1" }
+                })
             }
         }
 
