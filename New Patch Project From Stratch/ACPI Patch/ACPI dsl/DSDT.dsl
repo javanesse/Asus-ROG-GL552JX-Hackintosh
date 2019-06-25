@@ -24,11 +24,17 @@
  * 19. Rename GFX0 to IGPU - Across ACPI's - terminal Double Check
  * 20. Add SSDT-PluginType1
  * 21. Fix battery_ASUS-G75vw - DSDT - Butuh kext ACPIBatteryManager.kext
+ * 22. Rename EHC1 to EH01
+ * 23. Rename EHC2 to EH02
+ * 24. Rename B0D3 to HDAU - DSDT dan SSDT-4-SaSsdt.dsl
  * 
- * 22. Special Patch - DSDT Audio Patch HDEF menggunakan layoutid yang di hasilkan oleh aolikasi AppleHDA patcher. Butuh kext AppleALC
- * 23. Special Patch - DSDT dan SSDT-4-SaSsdt.dsl Rename B0D3 to HDAU
- * 23. Special Patch - SSDT-4-SaSsdt.dsl Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
- * 24. Special Patch - SSDT-4-SaSsdt.dsl PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
+ * - Special Patch - DSDT Audio Patch HDEF menggunakan layoutid yang di hasilkan oleh aplikasi AppleHDA patcher. Butuh kext AppleALC
+ * - USB prw 0x0D (instant Wake)
+ * - Keyboard Backlight Sleep Fix - Butuh kext AsusNBFnKeys.kext dan ApplePS2SmartTouchPad.kext
+ * - AsusNBFnKeys - Butuh kext AsusNBFnKeys.kext dan ApplePS2SmartTouchPad.kext
+ * - Fn Backlit Brightness Keys Patch - Butuh kext AsusNBFnKeys.kext dan ApplePS2SmartTouchPad.kext
+ * - Special Patch - SSDT-4-SaSsdt.dsl Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
+ * - Special Patch - SSDT-4-SaSsdt.dsl PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
  */
 
 
@@ -5999,7 +6005,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (OBFF, Zero)
         Name (LMSL, Zero)
         Name (LNSL, Zero)
-        Device (EHC1)
+        Device (EH01)
         {
             Name (_ADR, 0x001D0000)  // _ADR: Address
             OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
@@ -6546,14 +6552,26 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
             }
-
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            Name(_PRW, Package() { 0x6D, 0 })
+            Method (_DSM, 4, NotSerialized)
             {
-                Return (GPRW (0x0D, 0x03))
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
             }
+
+            
         }
 
-        Device (EHC2)
+        Device (EH02)
         {
             Name (_ADR, 0x001A0000)  // _ADR: Address
             OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
@@ -6936,11 +6954,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
             }
-
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            Name(_PRW, Package() { 0x6D, 0 })
+            Method (_DSM, 4, NotSerialized)
             {
-                Return (GPRW (0x0D, 0x03))
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
             }
+
+            
         }
 
         Device (XHC)
@@ -8601,11 +8631,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
             }
-
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            Name(_PRW, Package() { 0x6D, 0 })
+            Method (_DSM, 4, NotSerialized)
             {
-                Return (GPRW (0x0D, 0x03))
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
             }
+
+            
         }
 
         Device (HDEF)
@@ -8626,10 +8668,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PMES,   1
             }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x0D, 0x04))
-            }
+            
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -8643,6 +8682,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
+            Name(_PRW, Package() { 0x6D, 0 })
         }
 
         Scope (RP01)
@@ -9830,7 +9870,12 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Method (_WAK, 1, Serialized)  // _WAK: Wake
     {
         If (LOr(LLess(Arg0,1),LGreater(Arg0,5))) { Store(3,Arg0) }
-WAK (Arg0)
+If (LOr (LLess(Arg0, 1), LGreater(Arg0,5))) 
+        { 
+            Store(3, Arg0) 
+        } 
+        WAK(Arg0)
+
         ADBG ("_WAK")
         If (LOr (LEqual (Arg0, 0x03), LEqual (Arg0, 0x04)))
         {
@@ -11239,14 +11284,14 @@ WAK (Arg0)
 
         Method (_L0D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (LAnd (\_SB.PCI0.EHC1.PMEE, \_SB.PCI0.EHC1.PMES))
+            If (LAnd (\_SB.PCI0.EH01.PMEE, \_SB.PCI0.EH01.PMES))
             {
-                Notify (\_SB.PCI0.EHC1, 0x02)
+                Notify (\_SB.PCI0.EH01, 0x02)
             }
 
-            If (LAnd (\_SB.PCI0.EHC2.PMEE, \_SB.PCI0.EHC2.PMES))
+            If (LAnd (\_SB.PCI0.EH02.PMEE, \_SB.PCI0.EH02.PMES))
             {
-                Notify (\_SB.PCI0.EHC2, 0x02)
+                Notify (\_SB.PCI0.EH02, 0x02)
             }
 
             If (LAnd (\_SB.PCI0.XHC.PMEE, \_SB.PCI0.XHC.PMES))
@@ -12657,7 +12702,7 @@ WAK (Arg0)
 
                     If (LEqual (IIA0, 0x00010025))
                     {
-                        ^^PCI0.EHC1.LTEP ()
+                        ^^PCI0.EH01.LTEP ()
                         If (FGDP)
                         {
                             Return (Add (FGST, 0x00050000))
@@ -14051,6 +14096,54 @@ WAK (Arg0)
                 }
 
                 Return (MEMD)
+            }
+            Name (BOFF, Zero)
+            Method (SKBL, 1, NotSerialized)
+            {
+                If (Or (LEqual (Arg0, 0xED), LEqual (Arg0, 0xFD)))
+                {
+                    If (And (LEqual (Arg0, 0xED), LEqual (BOFF, 0xEA)))
+                    {
+                        Store (Zero, Local0)
+                        Store (Arg0, BOFF)
+                    }
+                    Else
+                    {
+                        If (And (LEqual (Arg0, 0xFD), LEqual (BOFF, 0xFA)))
+                        {
+                            Store (Zero, Local0)
+                            Store (Arg0, BOFF)
+                        }
+                        Else
+                        {
+                            Return (BOFF)
+                        }
+                    }
+                }
+                Else
+                {
+                    If (Or (LEqual (Arg0, 0xEA), LEqual (Arg0, 0xFA)))
+                    {
+                        Store (KBLV, Local0)
+                        Store (Arg0, BOFF)
+                    }
+                    Else
+                    {
+                        Store (Arg0, Local0)
+                        Store (Arg0, KBLV)
+                    }
+                }
+                Store (DerefOf (Index (PWKB, Local0)), Local1)
+                ^^PCI0.LPCB.EC0.WRAM (0x04B1, Local1)
+                Return (Local0)
+            }
+            Method (GKBL, 1, NotSerialized)
+            {
+                If (LEqual (Arg0, 0xFF))
+                {
+                    Return (BOFF)
+                }
+                Return (KBLV)
             }
         }
     }
@@ -19273,156 +19366,22 @@ Else
 
         Method (_Q0E, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (LLess (MSOS (), OSW8))
+            
+            If (ATKP)
             {
-                SBRN ()
+                ^^^^ATKD.IANE (0x20)
             }
 
-            If (LGreaterEqual (MSOS (), OSVT))
-            {
-                Store (LBTN, Local0)
-                If (^^^IGPU.PRST ())
-                {
-                    If (LNotEqual (^^^IGPU.LCDD._DCS (), 0x1F))
-                    {
-                        Return (One)
-                    }
-
-                    ^^^IGPU.DWBL ()
-                    Store (One, ASBN)
-                }
-
-                If (^^^PEG0.PEGP.PRST ())
-                {
-                    If (LNot (ASBN))
-                    {
-                        If (LNotEqual (^^^PEG0.PEGP.LCDD._DCS (), 0x1F))
-                        {
-                            Return (One)
-                        }
-
-                        ^^^PEG0.PEGP.DWBL ()
-                        Store (One, ASBN)
-                    }
-                }
-
-                Store (Zero, ASBN)
-                If (ATKP)
-                {
-                    If (LGreaterEqual (MSOS (), OSW8)){}
-                    Else
-                    {
-                        If (LGreater (Local0, Zero))
-                        {
-                            Decrement (Local0)
-                        }
-
-                        If (LGreater (Local0, 0x0A))
-                        {
-                            Store (0x0A, Local0)
-                        }
-
-                        Store (Local0, LBTN)
-                        ^^^^ATKD.IANE (Add (Local0, 0x20))
-                    }
-                }
-            }
-            Else
-            {
-                If (LGreater (LBTN, Zero))
-                {
-                    Decrement (LBTN)
-                }
-
-                If (LGreater (LBTN, 0x0A))
-                {
-                    Store (0x0A, LBTN)
-                }
-
-                STBR ()
-                If (ATKP)
-                {
-                    ^^^^ATKD.IANE (Add (LBTN, 0x20))
-                }
-            }
-
-            Return (One)
         }
 
         Method (_Q0F, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (LLess (MSOS (), OSW8))
+            
+            If (ATKP)
             {
-                SBRN ()
+                ^^^^ATKD.IANE (0x10)
             }
 
-            If (LGreaterEqual (MSOS (), OSVT))
-            {
-                Store (LBTN, Local0)
-                If (^^^IGPU.PRST ())
-                {
-                    If (LNotEqual (^^^IGPU.LCDD._DCS (), 0x1F))
-                    {
-                        Return (One)
-                    }
-
-                    ^^^IGPU.UPBL ()
-                    Store (One, ASBN)
-                }
-
-                If (^^^PEG0.PEGP.PRST ())
-                {
-                    If (LNot (ASBN))
-                    {
-                        If (LNotEqual (^^^PEG0.PEGP.LCDD._DCS (), 0x1F))
-                        {
-                            Return (One)
-                        }
-
-                        ^^^PEG0.PEGP.UPBL ()
-                        Store (One, ASBN)
-                    }
-                }
-
-                Store (Zero, ASBN)
-                If (ATKP)
-                {
-                    If (LGreaterEqual (MSOS (), OSW8)){}
-                    Else
-                    {
-                        If (LLess (Local0, 0x0A))
-                        {
-                            Increment (Local0)
-                        }
-                        Else
-                        {
-                            Store (0x0A, Local0)
-                        }
-
-                        Store (Local0, LBTN)
-                        ^^^^ATKD.IANE (Add (Local0, 0x10))
-                    }
-                }
-            }
-            Else
-            {
-                If (LLess (LBTN, 0x0A))
-                {
-                    Increment (LBTN)
-                }
-                Else
-                {
-                    Store (0x0A, LBTN)
-                }
-
-                STBR ()
-                If (ATKP)
-                {
-                    ^^^^ATKD.IANE (Add (LBTN, 0x10))
-                }
-            }
-
-            Return (One)
         }
 
         Method (_Q10, 0, NotSerialized)  // _Qxx: EC Query
@@ -21607,10 +21566,10 @@ Else
         }
     }
 
-    Scope (_SB.PCI0.EHC1)
+    Scope (_SB.PCI0.EH01)
     {
-        OperationRegion (EHC1, PCI_Config, 0x10, 0x08)
-        Field (EHC1, AnyAcc, Lock, Preserve)
+        OperationRegion (EH01, PCI_Config, 0x10, 0x08)
+        Field (EH01, AnyAcc, Lock, Preserve)
         {
             MBAS,   64
         }
