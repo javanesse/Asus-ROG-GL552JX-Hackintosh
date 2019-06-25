@@ -26,8 +26,9 @@
  * 21. Fix battery_ASUS-G75vw - DSDT - Butuh kext ACPIBatteryManager.kext
  * 
  * 22. Special Patch - DSDT Audio Patch HDEF menggunakan layoutid yang di hasilkan oleh aolikasi AppleHDA patcher. Butuh kext AppleALC
- * 23. Special Patch - SSDT-4 Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
- * 24. Special Patch - SSDT-4 PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
+ * 23. Special Patch - DSDT dan SSDT-4-SaSsdt.dsl Rename B0D3 to HDAU
+ * 23. Special Patch - SSDT-4-SaSsdt.dsl Framebuffer GPU https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_Haswell_0a260006.txt
+ * 24. Special Patch - SSDT-4-SaSsdt.dsl PNLF https://github.com/RehabMan/Laptop-DSDT-Patch/blob/master/graphics/graphics_PNLF_haswell.txt
  */
 
 
@@ -92,8 +93,8 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     External (_SB_.IFFS.FFSS, UnknownObj)    // Warning: Unknown object
     External (_SB_.PCCD, UnknownObj)
     External (_SB_.PCCD.PENB, IntObj)
-    External (_SB_.PCI0.B0D3.ABAR, FieldUnitObj)
-    External (_SB_.PCI0.B0D3.BARA, IntObj)
+    External (_SB_.PCI0.HDAU.ABAR, FieldUnitObj)
+    External (_SB_.PCI0.HDAU.BARA, IntObj)
     External (_SB_.PCI0.IGPU.ADVD, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.IGPU.AINT, MethodObj)    // 2 Arguments
     External (_SB_.PCI0.IGPU.CBLV, FieldUnitObj)
@@ -9844,9 +9845,9 @@ WAK (Arg0)
             }
         }
 
-        If (LAnd (LNotEqual (And (\_SB.PCI0.B0D3.ABAR, 0xFFFFC004), 0xFFFFC004), LNotEqual (And (\_SB.PCI0.B0D3.ABAR, 0xFFFFC000), Zero)))
+        If (LAnd (LNotEqual (And (\_SB.PCI0.HDAU.ABAR, 0xFFFFC004), 0xFFFFC004), LNotEqual (And (\_SB.PCI0.HDAU.ABAR, 0xFFFFC000), Zero)))
         {
-            Store (\_SB.PCI0.B0D3.ABAR, \_SB.PCI0.B0D3.BARA)
+            Store (\_SB.PCI0.HDAU.ABAR, \_SB.PCI0.HDAU.BARA)
         }
 
         If (And (ICNF, 0x10))
@@ -11878,7 +11879,7 @@ WAK (Arg0)
                 B0S0,8,B0S1,8, 
                 B0C0,8,B0C1,8, 
                 B0D0,8,B0D1,8, 
-                B0D2,8,B0D3,8, 
+                B0D2,8,HDAU,8, 
                 B1V0,8,B1V1,8, 
                 B1R0,8,B1R1,8, 
                 B1F0,8,B1F1,8, 
@@ -14394,7 +14395,7 @@ Else
                 Store (Arg2, Local2)
                 If (LEqual (PUNT, Zero))
                 {
-                    Multiply (Local1, B1B2(^^LPCB.EC0.B0D2,^^LPCB.EC0.B0D3), Local1)
+                    Multiply (Local1, B1B2(^^LPCB.EC0.B0D2,^^LPCB.EC0.HDAU), Local1)
                     Multiply (Local2, 0x0A, Local2)
                 }
 
@@ -14437,7 +14438,7 @@ Else
             {
                 If (PUNT)
                 {
-                    Store (B1B2(^^LPCB.EC0.B0D2,^^LPCB.EC0.B0D3), Index (PBST, 0x03))
+                    Store (B1B2(^^LPCB.EC0.B0D2,^^LPCB.EC0.HDAU), Index (PBST, 0x03))
                     Store (DerefOf (Index (PBST, 0x03)), Local0)
                     Multiply (DerefOf (Index (PBST, One)), Local0, Index (PBST, One))
                     Divide (DerefOf (Index (PBST, One)), 0x03E8, Local1, Index (PBST, One))
@@ -14742,7 +14743,7 @@ Else
                 }
                 Else
                 {
-                    Store (B1B2(B0D2,B0D3), Local0)
+                    Store (B1B2(B0D2,HDAU), Local0)
                 }
             }
             Else
